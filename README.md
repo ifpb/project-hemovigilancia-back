@@ -1,22 +1,25 @@
 ```bash
-yarn init -y
+$ yarn init -y
 ```
 ```bash
-yarn add express
+$ yarn add express
+$ yarn add @types/express -D
 ```
 ```bash
-yarn add typescript -D
+$ yarn add typescript -D
+$ yarn tsc --init
 ```
 ```bash
-yarn tsc --init
+$ yarn add ts-node-dev -D
 ```
 ```bash
-yarn add @types/express -D
+$ yarn add uuidv4
+$ yarn add @types/uuidv4
 ```
 ```bash
-yarn add ts-node-dev -D
 ```
 ```bash
+
 ```
 ```bash
 ```
