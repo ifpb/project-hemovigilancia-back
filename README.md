@@ -17,11 +17,13 @@ $ yarn add uuidv4
 $ yarn add @types/uuidv4
 ```
 ```bash
+$ docker run --name hemocentro -e MONGO_PASSWORD=docker -p 27017:27017 -d mongo
 ```
 ```bash
-
+$ yarn add typeorm mongodb
 ```
 ```bash
+$ yarn add reflect-metadata
 ```
 ```bash
 ```

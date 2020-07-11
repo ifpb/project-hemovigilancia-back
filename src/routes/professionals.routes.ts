@@ -1,27 +1,27 @@
 import { Router } from 'express';
+import { getCustomRepository } from 'typeorm';
 
 import ProfessionalRepository from '../repositories/ProfessionalRepository';
 import CreateProfessionalService from '../services/CreateProfessionalService';
-import DeleteProfessionalService from '../services/DeleteProfessionalService';
+//import DeleteProfessionalService from '../services/DeleteProfessionalService';
 
 const professionalsRouter = Router();
-const professionalRepository = new ProfessionalRepository();
-
 
 professionalsRouter.get('/', (request, response) => {
-  const professionals = professionalRepository.all();
+  const professionalRepository = getCustomRepository(ProfessionalRepository);
+  const professionals = professionalRepository.find();
 
   return response.json(professionals);
 });
 
 
-professionalsRouter.post('/', (request, response) => {
+professionalsRouter.post('/', async (request, response) => {
   try { 
     const { name, email, operation } = request.body;
 
-    const createProfessional = new CreateProfessionalService(professionalRepository);
+    const createProfessional = new CreateProfessionalService();
 
-    const professional = createProfessional.execute({ name, email, operation });
+    const professional = await createProfessional.execute({ name, email, operation });
 
     return response.json(professional);
     
@@ -31,7 +31,7 @@ professionalsRouter.post('/', (request, response) => {
 });
 
 
-professionalsRouter.delete('/:id', (request, response) => {
+/*professionalsRouter.delete('/:id', (request, response) => {
   try {
     const { id } = request.params;
   
@@ -44,7 +44,7 @@ professionalsRouter.delete('/:id', (request, response) => {
   } catch(err) {
     return response.status(400).json({ error: err.message });
   }
-});
+});*/
 
 
 professionalsRouter.put('/', (request, response) => {

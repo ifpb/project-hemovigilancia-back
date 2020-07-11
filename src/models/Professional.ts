@@ -1,20 +1,18 @@
-import { uuid } from 'uuidv4';
+import { EntityRepository , Column, PrimaryGeneratedColumn } from 'typeorm';
 
+@EntityRepository('professionals')
 class Professional {
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column()
   name: string;
 
+  @Column()
   email: string;
 
+  @Column()
   operation: string;
-
-  constructor({ name, email, operation }: Omit<Professional, 'id'>) {
-    this.id = uuid();
-    this.name = name;
-    this.email = email;
-    this.operation = operation;
-  }
 }
 
 export default Professional;

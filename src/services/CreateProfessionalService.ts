@@ -1,3 +1,5 @@
+import { getCustomRepository } from 'typeorm';
+
 import Professional from '../models/Professional';
 import ProfessionalRepository from '../repositories/ProfessionalRepository';
 
@@ -8,20 +10,18 @@ interface Request {
 }
 
 class CreateProfessionalService {
-  private professionalRepository: ProfessionalRepository;
-
-  constructor(professionalRepository: ProfessionalRepository) {
-    this.professionalRepository = professionalRepository;
-  }
-
-  public execute({ name, email, operation }: Request): Professional {
-    const findProfessionalInSameEmail = this.professionalRepository.findByEmail(email);
+  public async execute({ name, email, operation }: Request): Promise<Professional> {
+    
+    const professionalRepository = getCustomRepository(ProfessionalRepository);
+    const findProfessionalInSameEmail = professionalRepository.findByEmail(email);
 
     if (findProfessionalInSameEmail) {
       throw new Error('This email is already registered');
     }
 
-    const professional = this.professionalRepository.create({ name, email, operation }); 
+    const professional = professionalRepository.create({ name, email, operation }); 
+    
+    await professionalRepository.save(professional);
 
     return professional;
   }
