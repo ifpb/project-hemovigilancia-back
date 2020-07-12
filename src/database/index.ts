@@ -1,3 +1,5 @@
-import { createConnection } from 'typeorm';
+import mongoose from 'mongoose';
 
-createConnection()
+mongoose.connect('mongodb://localhost:27018/hemocentro', {
+  useNewUrlParser: true,
+});

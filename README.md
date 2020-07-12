@@ -17,19 +17,24 @@ $ yarn add uuidv4
 $ yarn add @types/uuidv4
 ```
 ```bash
-$ docker run --name hemocentro -e MONGO_PASSWORD=docker -p 27017:27017 -d mongo
+$ docker run --name mongodb -d mongo
 ```
 ```bash
-$ yarn add typeorm mongodb
+$ yarn add mongoose
+$ yarn add @types/mongoose -D
 ```
 ```bash
 $ yarn add reflect-metadata
 ```
 ```bash
+$ yarn add -D eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
 ```
 ```bash
+$ yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
 ```
 ```bash
+$ yarn add cors
+$ yarn add @types/cors -D
 ```
 ```bash
 ```

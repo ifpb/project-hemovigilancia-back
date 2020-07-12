@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
+import console from 'console';
 
-function logRequests(request: Request, response: Response, next: NextFunction) {
+function logRequests(request: Request, response: Response, next: NextFunction): void {
   const { method, url } = request;
-  const logLabel = `[${method.toUpperCase()}] ${url}`;  
+  const logLabel = `[${method.toUpperCase()}] ${url}`;
   console.time(logLabel);
   next();
   console.timeEnd(logLabel);
