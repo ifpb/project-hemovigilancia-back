@@ -13,6 +13,12 @@ $ yarn add -D
 $ yarn tsc --init
 $ yarn eslint --init
 ```
+> Creating container docker
 ```bash
-$
+$ docker run --name mongodb -p 27018:27017 -d mongo
 ```
+> Start on server
+```bash
+$ yarn dev:server
+```
+
