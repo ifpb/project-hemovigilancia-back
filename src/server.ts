@@ -27,6 +27,8 @@ mongoose.connect(
 
 app.use(routes);
 
-app.listen(3333, () => {
+const PORT : string|number = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
   console.log('Server started on port 3333!');
 });
