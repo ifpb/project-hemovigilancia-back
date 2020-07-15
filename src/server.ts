@@ -12,10 +12,18 @@ app.use(express.json());
 app.use(cors());
 app.use(logRequests);
 
-mongoose.connect('mongodb://localhost:27018/hemocentro', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// mongoose.connect('mongodb://localhost:27017/hemocentro', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+
+mongoose.connect(
+  'mongodb+srv://jorge:mongo123@small-url-cluster-gj9jd.gcp.mongodb.net/hemovigilancia?retryWrites=true&w=majority',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+);
 
 app.use(routes);
 
