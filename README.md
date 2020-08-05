@@ -2,7 +2,7 @@
 $ yarn init -y
 ```
 ```bash
-$ yarn add express cors mongoose
+$ yarn add express cors mongoose express-async-errors
 ```
 ```bash
 $ yarn add -D typescript ts-node-dev @types/express @types/cors @types/mongoose eslint@6.8.0

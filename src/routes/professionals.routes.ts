@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import Professional from '../database/Professionals';
+import Professional from '../models/Professional';
 
 const professionalsRouter = Router();
 
