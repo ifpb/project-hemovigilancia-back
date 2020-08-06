@@ -1,6 +1,6 @@
 import { Schema, model, Document } from 'mongoose';
 
-interface ProfessionalInterface extends Document {
+interface Professional extends Document {
   name: string;
   email: string;
   operation: string;
@@ -19,4 +19,4 @@ const ProfessionalSchema = new Schema(
   },
 );
 
-export default model<ProfessionalInterface>('Professional', ProfessionalSchema);
+export default model<Professional>('Professional', ProfessionalSchema);

@@ -2,16 +2,16 @@ import { Router } from 'express';
 
 import Professional from '../models/Professional';
 
+import CreateProfessionalService from '../services/Professional/CreateProfessionalService';
+import UpdateProfessionalService from '../services/Professional/UpdateProfessionalService';
+import DeleteProfessionalService from '../services/Professional/DeleteProfessionalService';
+
 const professionalsRouter = Router();
 
 professionalsRouter.get('/', async (request, response) => {
-  try {
-    const professionals = await Professional.find();
+  const professionals = await Professional.find();
 
-    return response.json(professionals);
-  } catch (err) {
-    return response.status(400).json({ error: 'Error loading professionals' });
-  }
+  return response.json(professionals);
 });
 
 professionalsRouter.get('/:id', async (request, response) => {
@@ -27,43 +27,47 @@ professionalsRouter.get('/:id', async (request, response) => {
 });
 
 professionalsRouter.post('/', async (request, response) => {
-  try {
-    const professional = await Professional.create(request.body);
+  const { name, email, operation, admin } = request.body;
 
-    return response.json(professional);
-  } catch (err) {
-    return response
-      .status(400)
-      .json({ error: 'Error creating new professional' });
-  }
+  const createProfessional = new CreateProfessionalService();
+
+  const professional = await createProfessional.execute({
+    name,
+    email,
+    operation,
+    admin,
+  });
+
+  return response.status(201).json({ professional });
 });
 
 professionalsRouter.put('/:id', async (request, response) => {
-  try {
-    const { id } = request.params;
-    const { name, email, operation } = request.body;
+  const { id } = request.params;
+  const { name, email, operation, admin } = request.body;
 
-    const professional = await Professional.updateOne(
-      { _id: id },
-      { $set: { name, email, operation } },
-    );
+  const updateProfessional = new UpdateProfessionalService();
 
-    return response.json(professional);
-  } catch (err) {
-    return response.status(400).json({ error: 'Error updating professional' });
-  }
+  const professional = await updateProfessional.execute({
+    id,
+    name,
+    email,
+    operation,
+    admin,
+  });
+
+  return response.json(professional);
 });
 
 professionalsRouter.delete('/:id', async (request, response) => {
-  try {
-    const { id } = request.params;
+  const { id } = request.params;
 
-    await Professional.deleteOne({ _id: id });
+  const deleteProfessional = new DeleteProfessionalService();
 
-    return response.json({ message: 'Professional deleted success!' });
-  } catch (err) {
-    return response.status(400).json({ error: 'Error deleting professional' });
-  }
+  await deleteProfessional.execute(id);
+
+  return response
+    .status(202)
+    .json({ message: 'Professional deleted success!' });
 });
 
 export default professionalsRouter;
