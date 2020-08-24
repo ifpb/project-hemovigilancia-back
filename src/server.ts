@@ -18,7 +18,7 @@ app.use(logRequests);
 // });
 
 mongoose.connect(
-  'mongodb+srv://jorge:mongo123@small-url-cluster-gj9jd.gcp.mongodb.net/hemovigilancia?retryWrites=true&w=majority',
+  'mongodb+srv://db_test:mongo123456@cluster0.b429c.gcp.mongodb.net/hemovigilanciq?retryWrites=true&w=majority',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
